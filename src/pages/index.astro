@@ -1,0 +1,371 @@
+---
+import '@fontsource/reem-kufi/500.css';
+import '@fontsource/reem-kufi/700.css';
+import '@fontsource/tajawal/400.css';
+import '@fontsource/tajawal/500.css';
+import '@fontsource/tajawal/700.css';
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import Icon from '../components/Icon.astro';
+import Placeholder from '../components/Placeholder.astro';
+import logoMark from '../assets/logo-mark.png';
+import brandSign from '../assets/brand-sign.jpg';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const pageUrl = new URL(base, Astro.site).href;
+const ogImage = new URL(`${base}og.jpg`, Astro.site).href;
+
+const name = 'شركة السلم التعليمي';
+const tagline = 'لإستيراد الكتب والقرطاسية والأدوات المكتبية';
+const description =
+  'شركة السلم التعليمي في طرابلس، ليبيا: استيراد الكتب والقرطاسية والأدوات المكتبية والوسائل التعليمية، بفرعين في السدرة وجزيرة المنقوش.';
+
+const contact = {
+  phoneDisplay: '+218 91-8564164',
+  phoneHref: 'tel:+218918564164',
+  whatsapp: 'https://wa.me/218918564164',
+  email: 'temp@temp.com',
+  city: 'طرابلس، ليبيا',
+};
+
+const audience = [
+  { icon: 'school', label: 'المدارس' },
+  { icon: 'store', label: 'المكتبات' },
+  { icon: 'building', label: 'الشركات والمؤسسات' },
+  { icon: 'backpack', label: 'الطلاب والأسر' },
+] as const;
+
+const products = [
+  { icon: 'book', title: 'الكتب', text: 'كتب مدرسية مساندة وقصص وكتب ثقافية للصغار والكبار.', tone: 1 },
+  { icon: 'notebook', title: 'الدفاتر والكراسات', text: 'دفاتر بأحجام ومقاسات متعددة، ومفكرات للمكتب.', tone: 2 },
+  { icon: 'pencil', title: 'أدوات الكتابة والرسم', text: 'أقلام حبر ورصاص وألوان وأقلام تحديد وأدوات هندسية.', tone: 3 },
+  { icon: 'backpack', title: 'الحقائب المدرسية', text: 'حقائب متينة ومريحة تناسب جميع الأعمار.', tone: 4 },
+  { icon: 'flask', title: 'الوسائل التعليمية', text: 'أدوات علوم وألعاب تعليمية تنمّي مهارات الطلاب.', tone: 1 },
+  { icon: 'folder', title: 'الأدوات المكتبية', text: 'ملفات وورق طباعة ومنظّمات مكتب ومستلزمات يومية.', tone: 2 },
+] as const;
+
+const steps = [
+  { title: 'أخبرنا بما تحتاج', text: 'عبر الهاتف أو واتساب، أو بزيارة أحد فرعينا.' },
+  { title: 'نرسل لك عرض السعر', text: 'الأصناف المتوفرة وأسعارها، بوضوح وسرعة.' },
+  { title: 'نجهّز طلبك', text: 'نجمع الطلب ونراجع جودته قبل التسليم.' },
+  { title: 'استلم طلبك', text: 'من الفرع، أو نتفق معك على طريقة التسليم المناسبة.' },
+];
+
+const branches = [
+  { title: 'الفرع الأول', area: 'طرابلس، السدرة', detail: 'مقابل مدخل الحي السكني النخيل' },
+  { title: 'الفرع الثاني', area: 'طرابلس، جزيرة المنقوش', detail: 'بجانب مسجد الإحسان' },
+];
+
+const nav = [
+  { href: '#about', label: 'من نحن' },
+  { href: '#products', label: 'منتجاتنا' },
+  { href: '#steps', label: 'كيف نعمل' },
+  { href: '#branches', label: 'فروعنا' },
+  { href: '#contact', label: 'تواصل معنا' },
+];
+
+// Leaves and stars around the hero emblem, in the logo's leaf colours.
+const confetti = [
+  { shape: 'leaf', color: 'teal', x: 8, y: 18, r: -20, s: 26, d: 0 },
+  { shape: 'leaf', color: 'orange', x: 86, y: 12, r: 35, s: 22, d: 1.2 },
+  { shape: 'star', color: 'red', x: 92, y: 58, r: 0, s: 18, d: 2.1 },
+  { shape: 'leaf', color: 'green', x: 4, y: 70, r: 140, s: 24, d: 0.6 },
+  { shape: 'leaf', color: 'maroon', x: 78, y: 88, r: 200, s: 20, d: 1.8 },
+  { shape: 'star', color: 'teal', x: 22, y: 92, r: 0, s: 14, d: 2.6 },
+  { shape: 'leaf', color: 'green', x: 50, y: -2, r: 90, s: 18, d: 3 },
+];
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{name} | {tagline}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#12305a" />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" type="image/png" href={`${base}favicon.png`} />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ar_LY" />
+    <meta property="og:title" content={`${name} ${tagline}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+    <header class="header" data-header>
+      <div class="container header__inner">
+        <a class="brand" href="#top" aria-label={name}>
+          <span class="brand__badge">
+            <Image src={logoMark} alt="" width={44} densities={[1, 2]} loading="eager" />
+          </span>
+          <span class="brand__text">
+            <span class="brand__name">السلم التعليمي</span>
+            <span class="brand__sub">للكتب والقرطاسية</span>
+          </span>
+        </a>
+
+        <nav class="nav" id="site-nav" aria-label="القائمة الرئيسية" data-nav>
+          <ul>
+            {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          </ul>
+        </nav>
+
+        <a class="btn btn--small header__call" href={contact.phoneHref}>
+          <Icon name="phone" size={18} />
+          <span>اتصل بنا</span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+          <Icon name="menu" class="menu-toggle__open" />
+          <Icon name="close" class="menu-toggle__close" />
+          <span class="sr-only">القائمة</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero__stairs" aria-hidden="true"></div>
+        <div class="container hero__grid">
+          <div class="hero__text">
+            <p class="eyebrow hero__in" style="--d: 0">
+              <Icon name="pin" size={16} />
+              {contact.city} · فرعان لخدمتك
+            </p>
+            <h1 class="hero__title hero__in" style="--d: 1">
+              {name}
+              <span>{tagline}</span>
+            </h1>
+            <p class="hero__lead hero__in" style="--d: 2">
+              نستورد الكتب والقرطاسية والأدوات المكتبية والوسائل التعليمية، ونوفّرها للمدارس والمكتبات والأسر بجودة
+              عالية وأسعار مناسبة.
+            </p>
+            <div class="hero__actions hero__in" style="--d: 3">
+              <a class="btn btn--light" href={contact.whatsapp} target="_blank" rel="noopener">
+                <Icon name="whatsapp" size={20} />
+                راسلنا على واتساب
+              </a>
+              <a class="btn btn--outline" href="#branches">
+                <Icon name="pin" size={18} />
+                فروعنا
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__art hero__in" style="--d: 1.5" aria-hidden="true">
+            <div class="emblem">
+              <svg class="emblem__ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" /></svg>
+              <div class="emblem__disc">
+                <Image src={logoMark} alt="" width={300} densities={[1, 2]} loading="eager" />
+              </div>
+              {confetti.map((c) => (
+                <svg
+                  class={`confetti confetti--${c.color}`}
+                  viewBox="0 0 24 24"
+                  style={`--x:${c.x}%; --y:${c.y}%; --r:${c.r}deg; --s:${c.s}px; --dl:${c.d}s`}
+                >
+                  {c.shape === 'leaf' ? (
+                    <path d="M12 2C5.5 6.5 4 13 6.5 21 14 18.5 17.5 11 12 2Z" />
+                  ) : (
+                    <path d="m12 2 2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2l-6.1 3.4 1.4-6.8L2.2 9.1l6.9-.8Z" />
+                  )}
+                </svg>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="audience" aria-label="لمن نعمل">
+        <div class="container">
+          <ul class="audience__list">
+            {audience.map((a, i) => (
+              <li data-reveal style={`--i: ${i}`}>
+                <Icon name={a.icon} size={24} />
+                {a.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="container about__grid">
+          <div class="about__text" data-reveal>
+            <p class="kicker">من نحن</p>
+            <h2>كل درجة خطوة نحو المعرفة</h2>
+            <p>
+              اخترنا السلّم اسماً وشعاراً لأن التعلّم صعود متدرّج، درجةً بعد درجة. في شركة السلم التعليمي نستورد ما يحتاجه
+              الطالب والمعلّم والمكتب من مصادر موثوقة، ونوفّره في فرعينا بطرابلس.
+            </p>
+            <ul class="checks">
+              <li>منتجات مختارة بعناية من موردين موثوقين</li>
+              <li>أسعار مناسبة للأفراد وطلبات الجملة</li>
+              <li>فرعان في طرابلس قريبان منك</li>
+            </ul>
+          </div>
+          <figure class="about__media" data-reveal>
+            <Image src={brandSign} alt={`شعار ${name} على خلفية زرقاء`} widths={[420, 640, 844]} sizes="(max-width: 860px) 90vw, 460px" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section products" id="products">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="kicker">منتجاتنا</p>
+            <h2>من الدفتر الأول إلى رفوف المكتبة</h2>
+          </header>
+          <div class="cards">
+            {products.map((p, i) => (
+              <article class="card" data-reveal style={`--i: ${i % 3}`}>
+                <Placeholder icon={p.icon} label={`صورة توضيحية: ${p.title}`} tone={p.tone} />
+                <div class="card__body">
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section steps" id="steps">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="kicker">كيف نعمل</p>
+            <h2>طلبك في أربع درجات</h2>
+          </header>
+          <ol class="stairs">
+            {steps.map((s, i) => (
+              <li class="stair" data-reveal style={`--i: ${i}`}>
+                <span class="stair__num">{i + 1}</span>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="section branches" id="branches">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="kicker">فروعنا</p>
+            <h2>زورونا في طرابلس</h2>
+          </header>
+          <div class="branches__grid">
+            {branches.map((b, i) => (
+              <article class="branch" data-reveal style={`--i: ${i}`}>
+                <span class="branch__icon"><Icon name="pin" size={28} /></span>
+                <div>
+                  <p class="branch__label">{b.title}</p>
+                  <h3>{b.area}</h3>
+                  <p class="branch__detail">{b.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container contact__grid">
+          <div class="contact__intro" data-reveal>
+            <p class="kicker kicker--light">تواصل معنا</p>
+            <h2>جاهزون للإجابة عن استفسارك</h2>
+            <p>اسأل عن منتج، أو اطلب عرض سعر لمدرستك أو مكتبتك.</p>
+          </div>
+          <ul class="contact__list">
+            <li data-reveal style="--i: 0">
+              <a href={contact.phoneHref}>
+                <span class="contact__icon"><Icon name="phone" /></span>
+                <span class="contact__label">الهاتف</span>
+                <span class="contact__value" dir="ltr">{contact.phoneDisplay}</span>
+              </a>
+            </li>
+            <li data-reveal style="--i: 1">
+              <a href={contact.whatsapp} target="_blank" rel="noopener">
+                <span class="contact__icon"><Icon name="whatsapp" /></span>
+                <span class="contact__label">واتساب</span>
+                <span class="contact__value" dir="ltr">{contact.phoneDisplay}</span>
+              </a>
+            </li>
+            <li data-reveal style="--i: 2">
+              <a href={`mailto:${contact.email}`}>
+                <span class="contact__icon"><Icon name="mail" /></span>
+                <span class="contact__label">البريد الإلكتروني</span>
+                <span class="contact__value" dir="ltr">{contact.email}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <a class="brand" href="#top">
+          <span class="brand__badge">
+            <Image src={logoMark} alt="" width={44} densities={[1, 2]} />
+          </span>
+          <span class="brand__text">
+            <span class="brand__name">{name}</span>
+            <span class="brand__sub">{tagline}</span>
+          </span>
+        </a>
+        <p>© <span data-year>2026</span> {name}. جميع الحقوق محفوظة.</p>
+      </div>
+    </footer>
+
+    <a class="wa-float" href={contact.whatsapp} target="_blank" rel="noopener" aria-label="راسلنا على واتساب">
+      <Icon name="whatsapp" size={28} />
+    </a>
+
+    <script>
+      const header = document.querySelector<HTMLElement>('[data-header]');
+      const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+      const nav = document.querySelector<HTMLElement>('[data-nav]');
+
+      const setMenu = (open: boolean) => {
+        toggle?.setAttribute('aria-expanded', String(open));
+        header?.classList.toggle('is-open', open);
+      };
+      toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+      nav?.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('a')) setMenu(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenu(false);
+      });
+
+      const onScroll = () => {
+        header?.classList.toggle('is-scrolled', window.scrollY > 8);
+        document.body.classList.toggle('show-float', window.scrollY > window.innerHeight * 0.7);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        },
+        { rootMargin: '0px 0px -10% 0px' },
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+      document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
+    </script>
+  </body>
+</html>
