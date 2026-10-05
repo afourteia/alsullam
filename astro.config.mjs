@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// Served from the personal domain as a project page: https://fourteia.com/alsullam/
+// Served from its own custom domain via GitHub Pages: https://sullam.net.ly/
 export default defineConfig({
-  site: 'https://fourteia.com',
-  base: '/alsullam',
+  site: 'https://sullam.net.ly',
 });

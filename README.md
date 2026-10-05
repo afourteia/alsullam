@@ -2,22 +2,22 @@
 
 One-page Arabic (RTL) site built with [Astro](https://astro.build).
 
-Live: https://fourteia.com/alsullam/
+Live: https://sullam.net.ly/
 
 ## Develop
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321/alsullam/
+npm run dev      # http://localhost:4321/
 npm run build    # outputs to dist/
 ```
 
 ## Deploy
 
 Every push to `main` builds and publishes the site to GitHub Pages through
-`.github/workflows/deploy.yml`. The site is a project page under the
-`afourteia.github.io` custom domain, so `astro.config.mjs` sets
-`site: 'https://fourteia.com'` and `base: '/alsullam'`.
+`.github/workflows/deploy.yml`. The custom domain `sullam.net.ly` is set in the repo's
+Pages settings (no CNAME file is needed with Actions deploys). DNS: apex A/AAAA
+records point to GitHub Pages, and `www` is a CNAME to `afourteia.github.io`.
 
 ## Editing content
 
