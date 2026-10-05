@@ -699,18 +699,12 @@ figure {
   min-height: calc(14rem + var(--i) * 3rem);
   padding: 1.5rem 1.35rem;
   border-radius: 16px 16px 4px 4px;
-  background: linear-gradient(180deg, var(--navy-2), var(--navy));
+  /* Accent strip painted into the background so the card's corners clip it */
+  background:
+    linear-gradient(var(--accent) 0 0) top / 100% 6px no-repeat,
+    linear-gradient(180deg, var(--navy-2), var(--navy));
   color: #fff;
   box-shadow: var(--shadow);
-}
-
-.stair::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: 6px;
-  border-radius: 16px 16px 0 0;
-  background: var(--accent);
 }
 
 .stair:nth-child(2) { --accent: var(--green); }
